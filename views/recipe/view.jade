@@ -1,0 +1,11 @@
+
+extends ../layout
+
+block content
+  h2=recipe.title
+  p="Created by " + recipe.author
+  p=recipe.prep_time + " minutes"
+  p=recipe.instructions
+  form(method="post", action="/recipe/delete/" + recipe.id)
+    button#del(name="del_recipe") Delete
+    button#edit(name="upd_recipe", formaction="/recipe/update/" + recipe.id) Edit

@@ -1,0 +1,25 @@
+{
+  "name": "crudite",
+  "version": "1.0.0",
+  "description": "A meal planning application",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "express-mongoose": "^0.1.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.0.49",
+    "mongoose": "^4.2.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "meal",
+    "planner",
+    "crudite"
+  ],
+  "author": "Joel Tanzi",
+  "license": "ISC"
+}

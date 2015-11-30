@@ -1,0 +1,45 @@
+
+* {
+  font-family: "Arial", sans-serif;
+}
+
+h1 {
+
+}
+
+h2 {
+  color: #6699FF;
+  font-size: 1.5em;
+  background-color: CC9900;
+  width: 50%;
+  text-align: center;
+  border-radius: 10x 10px 10px 10px;
+}
+
+ul li {
+  list-style: none;
+  position: relative;
+  left: 30%;
+  width: 50%;
+  margin: 5px 5px 5px 5px;
+}
+
+p {
+  font-size: 1em;
+}
+
+#main_title {
+    height: 1.5em;
+    color: #9933ff;
+    font-size: 3.5em;
+    background-color: #33CC66;
+    width:70%;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#recipe_list {
+  width: 70%;
+  background-color: #ccccff;
+  border-radius: 10px 10px 10px 10px;
+}

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  a(href="/recipe/create") Add a New Recipe
+  h1(id="main_title") Crudite
+  div(id="recipe_list")
+    ul.recipes
+      each recipe in recipes
+        li
+          h2
+            a(href="/recipe/#{recipe.id}")= recipe.title
+          each ingredient in recipe.ingredients
+            p=ingredient
+
+          //Display first portion of instructions
+          - var str = recipe.instructions.substr(0, 150);
+          p= str + "..."
