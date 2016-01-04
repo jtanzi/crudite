@@ -12,7 +12,7 @@ module.exports = function (app) {
     Recipe.find({}, {"title":"title", "ingredients":"ingredients", "instructions":"instructions"}).limit(10).exec(function(err, recipes){
       if (err) return next(err);
       //Output recipes to webpage
-      res.render('home.jade', { recipes: recipes });
+      res.render('home.jade', { recipes: recipes, scripts: ['scripts/script.js'] });
     })
   })
 

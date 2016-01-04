@@ -8,4 +8,5 @@ block content
   p=recipe.instructions
   form(method="post", action="/recipe/delete/" + recipe.id)
     button#del(name="del_recipe") Delete
-    button#edit(name="upd_recipe", formaction="/recipe/update/" + recipe.id) Edit
+  form(method="get", action="/recipe/update/" + recipe.id)
+    button#edit(name="upd_recipe") Edit

@@ -16,14 +16,17 @@ var schema = mongoose.Schema({
 //Edit function - TODO: Fix failure to pull parameters from form
 schema.statics.edit = function(req, callback) {
   var id = req.params.id;
-  console.log("recipe schema function call; " + id);
+  console.log("recipe schema function call: " + id);
 
   var update = {};
-  update.title = req.params.title;
-  update.author = req.params.author;
-  //update.ingredients = req.params.ingredients;
-  update.prep_time = req.params.prep_time;
-  update.instructions = req.params.instructions;
+  update.title = req.body.title;
+  console.log(update.title);
+  update.author = req.body.author;
+  console.log(update.author);
+  //update.ingredients = req.body.ingredients;
+  //console.log(update.ingredients);
+  update.prep_time = req.body.prep_time;
+  update.instructions = req.body.instructions;
 
   this.update({_id: id}, update, function(err, numAffected) {
     if (err) return callback(err);

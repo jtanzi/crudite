@@ -51,7 +51,7 @@ module.exports = function (app) {
   // Read
   app.get("/recipe/:id", function (req, res, next) {
     var id = req.params.id;
-    console.log(id);
+    //console.log(id);
     var ObjectID = require('mongodb').ObjectID; //Convert id as string to ObjectID for mongoDB query
 
     Recipe.findOne({_id: new ObjectID(id)}, function (err, recipe) {
@@ -68,13 +68,15 @@ module.exports = function (app) {
   // Update (TODO - Not working yet)
   app.get("/recipe/update/:id", function(req, res) {
     var id = req.params.id;
-    console.log("Update record " + id);
-    res.render('recipe/create.jade', {
+    //console.log("Update record " + id);
+    res.render('recipe/edit.jade', {
       recipe: Recipe.findById(id)
     });
   })
 
-  app.post("/recipe/update/:id", function(req, res, next) {
+  app.put("/recipe/update/:id", function(req, res, next) {
+    var title = req.body.title;
+    console.log("Put received for recipe " + title);
     Recipe.edit(req, function(err) {
       if (err) return next(err);
       res.redirect("/recipe/"+ req.params.id);

@@ -7,6 +7,10 @@ h1 {
 
 }
 
+p { 
+  white-space: pre-line;
+}
+
 h2 {
   color: #6699FF;
   font-size: 1.5em;
@@ -24,8 +28,9 @@ ul li {
   margin: 5px 5px 5px 5px;
 }
 
-p {
+ul li p {
   font-size: 1em;
+
 }
 
 #main_title {

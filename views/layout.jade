@@ -3,11 +3,11 @@ html
   head
     title= pageTitle
     style
-      include ../style.css
+      include ../public/style/style.css
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
   body
     header
       h1= pageTitle
     a(href="/") Home
     section.content
       block content
- 
