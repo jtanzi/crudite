@@ -1,13 +1,20 @@
+include mixins
+
 html5
 html
   head
     title= pageTitle
     style
       include ../public/style/style.css
+      include ../public/style/bootstrap.min.css
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(scr="../public/js/bootstrap.min.js")
   body
     header
       h1= pageTitle
-    a(href="/") Home
+    .container
+      +nav("Crudite", "dropdown_menu")
+        +nav_item( "index.html", "active" ) Home
+
     section.content
       block content

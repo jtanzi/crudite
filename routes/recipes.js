@@ -65,7 +65,7 @@ module.exports = function (app) {
   })
 
 
-  // Update (TODO - Not working yet)
+  // Update
   app.get("/recipe/update/:id", function(req, res) {
     var id = req.params.id;
     //console.log("Update record " + id);
@@ -74,7 +74,7 @@ module.exports = function (app) {
     });
   })
 
-  app.put("/recipe/update/:id", function(req, res, next) {
+  app.post("/recipe/update/:id", function(req, res, next) {
     var title = req.body.title;
     console.log("Put received for recipe " + title);
     Recipe.edit(req, function(err) {
