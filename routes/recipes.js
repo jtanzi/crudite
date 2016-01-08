@@ -28,6 +28,12 @@ module.exports = function (app) {
     var ing_3_num = req.body.ing_3_num;
     var ing_3_units = req.body.ing_3_units;
     var ing_3_thing = req.body.ing_3_thing;
+    var ing_4_num = req.body.ing_4_num;
+    var ing_4_units = req.body.ing_4_units;
+    var ing_4_thing = req.body.ing_4_thing;
+    var ing_5_num = req.body.ing_5_num;
+    var ing_5_units = req.body.ing_5_units;
+    var ing_5_thing = req.body.ing_5_thing;
     var instructions = req.body.instructions;
 
     Recipe.create({
@@ -36,8 +42,10 @@ module.exports = function (app) {
       prep_time: prep_time,
       ingredients : [ing_1_num + " " + ing_1_units + " " + ing_1_thing,
         ing_2_num + " " + ing_2_units + " " + ing_2_thing,
-        ing_3_num + " " + ing_3_units + " " + ing_3_thing],
-      contains: [ing_1_thing, ing_2_thing, ing_3_thing],
+        ing_3_num + " " + ing_3_units + " " + ing_3_thing,
+        ing_4_num + " " + ing_4_units + " " + ing_4_thing,
+        ing_5_num + " " + ing_5_units + " " + ing_5_thing],
+      contains: [ing_1_thing, ing_2_thing, ing_3_thing, ing_4_thing, ing_5_thing],
       instructions: instructions
      }, function (err, recipe) {
        if (err) return next(err);

@@ -2,66 +2,57 @@
 extends ../layout
 
 block content
-  h1 Edit Recipe
+  .container
+    +nav("Crudite", "dropdown_menu")
+      +nav_item( "/", "inactive" ) Home
+      +nav_item("/recipe/create", "inactive") Add New
   //title = post ? recipe.title
   //author = post ? recipe.author
   //prep_time = post ? recipe.prep_time
   //instructions = post ? recipe.instructions
-  form(action="/recipe/update/" + recipe.id, method="post", name='update_recipe',enctype='application/x-www-form-urlencoded')
-    ul
-      li
-        label(for="title") Title
-        input#title(name='title', placeholder=" Your Recipe Name", type="text", value=recipe.title)
-      li
-        label(for="author") Author
-        input#author(name='author', placeholder=" Author Name", type="text", value=recipe.author)
-      li
-        label(for="prep_time") Preparation Time
-        input#prep_time(name='prep_time', placeholder=" # minutes", type="number", value=recipe.prep_time)
-      fieldset
-        legend Ingredients
-        li
-          input#ing_1(name='ing_1_num', type="number", placeholder=" # of ")
-          select(id=ing_1, name='ing_1_units')
-            option(value="") -- Select Unit --
-            option cups
-            option tbsp
-            option tsp
-            option oz
-            option lb(s)
-            option kg
-            option inch(es)
-            option fl oz
-          input#ing_1(name='ing_1_thing', type="text", placeholder=" Type ")
-          button#add_ing(name='add_ing') Add More
-        li
-          input#ing_2(name='ing_2_num', type="text", placeholder=" # of ")
-          select(id=ing_2, name='ing_2_units')
-            option(value="") -- Select Unit --
-            option cups
-            option tbsp
-            option tsp
-            option oz
-            option lb(s)
-            option kg
-            option inch(es)
-            option fl oz
-          input#ing_2(name='ing_2_thing', type="text", placeholder=" Type ")
-        li
-          input#ing_3(name='ing_3_num', type="text", placeholder=" # of ")
-          select(id=ing_3, name='ing_3_units')
-            option(value="") -- Select Unit --
-            option cups
-            option tbsp
-            option tsp
-            option oz
-            option lb(s)
-            option kg
-            option inch(es)
-            option fl oz
-          input#ing_3(name='ing_3_thing', type="text", placeholder=" Type ")
-      li
-        label(for="instructions") Instructions
-        textarea#title(name='instructions')=recipe.instructions
-      li
-        button#update_submit(type='submit') Update
+  .container
+    form(action="/recipe/update/" + recipe.id, method="post", name='update_recipe',enctype='application/x-www-form-urlencoded')
+      div(class="row")
+        div(class="col-md-8")
+          label(for="title") Title
+          input#title(name='title', placeholder=" Your Recipe Name", type="text", value=recipe.title)
+      div(class="row")
+        div(class="col-md-8")
+          label(for="author") Author
+          input#author(name='author', placeholder=" Author Name", type="text", value=recipe.author)
+      div(class="row")
+        div(class="col-md-8")
+          label(for="prep_time") Preparation Time
+          input#prep_time(name='prep_time', placeholder=" # minutes", type="number", value=recipe.prep_time)
+      div(class="row")
+        div(class="col-md-12")
+          fieldset
+            legend Ingredients
+              mixin ing-li-item(name1, name2, name3)
+                div(class="row")
+                  div(class="col-md-8")
+                    input#ing(class="inginput1" name=name1, type="number", placeholder=" # of ")
+                    select(class="inginput2", name=name2)
+                      option(value="") -- Select Unit --
+                      option cups
+                      option tbsp
+                      option tsp
+                      option oz
+                      option lb(s)
+                      option kg
+                      option inch(es)
+                      option fl oz
+                    input#ing_1(class="inginput3" name=name3, type="text", placeholder=" Type ")
+              +ing-li-item("ing_1_num", "ing_1_units", "ing_1_thing")
+              +ing-li-item("ing_2_num", "ing_2_units", "ing_2_thing")
+              +ing-li-item("ing_3_num", "ing_3_units", "ing_3_thing")
+              +ing-li-item("ing_4_num", "ing_4_units", "ing_4_thing")
+              +ing-li-item("ing_5_num", "ing_5_units", "ing_5_thing")
+      div(class="row")
+        div(class="col-md-8")
+          label(for="instructions") Instructions
+          textarea#title(name='instructions')=recipe.instructions
+      div(class="row")
+        div(class="col-md-8")
+          button#update_submit(class="btn btn-xs btn-success", type='submit') Update
+          button#update_cancel(class="btn btn-xs btn-warning", action="/", type='button') Cancel

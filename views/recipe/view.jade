@@ -2,11 +2,16 @@
 extends ../layout
 
 block content
-  h2=recipe.title
-  p="Created by " + recipe.author
-  p=recipe.prep_time + " minutes"
-  p=recipe.instructions
-  form(method="post", action="/recipe/delete/" + recipe.id)
-    button#del(name="del_recipe") Delete
-  form(method="get", action="/recipe/update/" + recipe.id)
-    button#edit(name="upd_recipe") Edit
+  .container
+    +nav("Crudite", "dropdown_menu")
+      +nav_item( "/", "inactive" ) Home
+      +nav_item("/recipe/create", "inactive") Add New
+  .container
+    h2=recipe.title
+    p="Created by " + recipe.author
+    p=recipe.prep_time + " minutes"
+    p=recipe.instructions
+    form(method="post", action="/recipe/delete/" + recipe.id)
+      button#del(name="del_recipe") Delete
+    form(method="get", action="/recipe/update/" + recipe.id)
+      button#edit(name="upd_recipe") Edit

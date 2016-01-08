@@ -1,18 +1,17 @@
 extends layout
 
--
-  $(document).ready(function() {
-    $("#recipe_list_body").hide();
-  })
-
 block content
-  a(href="/recipe/create") Add a New Recipe
-  h1(id="main_title") Crudite
-  div(id="recipe_list")
-    ul.recipes
-      each recipe in recipes
-        div(id="recipe_list_item")
-          li
+  //a(href="/recipe/create") Add a New Recipe
+  //h1(id="main_title") Crudite
+  .container
+    +nav("Crudite", "dropdown_menu")
+      +nav_item( "/", "active" ) Home
+      +nav_item("/recipe/create", "inactive") Add New
+  .container
+    div(class="row" id="recipe_list")
+      div(class="col-md-6")
+        each recipe in recipes
+          div(id="recipe_list_item")
             h2
               a(href="/recipe/#{recipe.id}")= recipe.title
             div(id="recipe_list_body")
