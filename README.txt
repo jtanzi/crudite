@@ -25,7 +25,7 @@ This module requires the following software to be locally installed:
  * MongoDB (v3.0 or higher)
  * Node.js (v 4.2.2 or higher)
 
- In addition, the application uses Bootstrap.  It is therefore necessary to download Bootstrap locally and copy bootstrap.min.css to the /public/style directory, and the bootstrap.min.js to the /public/js directory (or make use of the appropriate CDNs and update /views/layout.jade to point to these).
+ In addition, the application uses Bootstrap.  It is therefore necessary for bootstrap.min.css to be present in the /public/style directory, and the bootstrap.min.js to be present in the /public/js directory for formatting to work properly.  Alternatively, you could alter /views/layout.jade to point to the appropriate hosted source for Bootstrap instead, or use your own choice for CSS management.
 
 INSTALLATION
 ------------
