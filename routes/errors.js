@@ -7,21 +7,21 @@ module.exports = function (app) {
     res.status(404);
 
     if (req.accepts('html')) {
-      return res.send("<h2>I'm sorry, I couldn't find that page.</h2>");
+      return res.send("<h2>Find the page, I did not.  Seek again, user.  Backwards speak, you say I do?  The one lost you are, are you not?</h2>");
     }
 
     if (req.accepts('json')) {
-      return res.json({ error: 'Not found' });
+      return res.json({ error: 'JSON file not found.' });
     }
 
     // default response type
     res.type('txt');
-    res.send("Hmmm, couldn't find that page.");
+    res.send("Find the page, I did not.  Seek again, user.  Backwards speak, you say I do?  The one lost you are, are you not?  And a text-based browser you use at that?");
   })
 
    // 500
   app.use(function (err, req, res, next) {
     console.error('Error at %s\n', req.url, err.stack);
-    res.send(500, "This is not the page you seek...An error has occurred while loading.");
+    res.send(500, "<h2>The page you seek this is not, friend...Occurred, an error has, while loading.  Curse not, for no good it will do you.</h2>");
   })
 }

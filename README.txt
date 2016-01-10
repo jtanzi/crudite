@@ -25,6 +25,8 @@ This module requires the following software to be locally installed:
  * MongoDB (v3.0 or higher)
  * Node.js (v 4.2.2 or higher)
 
+ In addition, the application uses Bootstrap.  It is therefore necessary to download Bootstrap locally and copy bootstrap.min.css to the /public/style directory, and the bootstrap.min.js to the /public/js directory (or make use of the appropriate CDNs and update /views/layout.jade to point to these).
+
 INSTALLATION
 ------------
 
@@ -41,6 +43,6 @@ To run the program, from the /crudite directory enter "node app.js".  Open a bro
 
 NOTES
 -----
-Update operations are not working yet.  Create, read and delete are all functional.
-Ingredients are limited to three per recipe for the moment while I work out the best of several approaches to handling an indeterminate number of ingredients per recipe.
+All CRUD operations are functional.  However, when editing a recipe, the ingredients currently stored in that recipe are not displayed in the Ingredients fields.  This will be fixed soon.
+Ingredients are limited to five per recipe for the moment while I work out the best of several approaches to handling an indeterminate number of ingredients per recipe.
 Some directories, such as /plugins, /middleware, and /helpers, are not yet being used.  These are included to ease addition of later features.
