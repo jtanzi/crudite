@@ -1,0 +1,15 @@
+ extends layout
+
+block content
+  .container
+    +nav("Crudite", "dropdown_menu") 
+      +nav_item( "/", "inactive" ) Home
+      +nav_item("/recipe/create", "inactive") Add New
+      +nav_item("/recipe/planner", "active") Meal Planner
+  .container
+    div(class="row" id="recipe_list")
+      div(class="col-md-6")
+        each recipe in recipes
+          div(id="recipe_list_item")
+            h2
+              a(href="/recipe/#{recipe.id}")= recipe.title
