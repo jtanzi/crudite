@@ -1,15 +1,19 @@
- extends layout
+extends layout
 
 block content
   .container
-    +nav("Crudite", "dropdown_menu") 
+    +nav("Crudite", "dropdown_menu")
       +nav_item( "/", "inactive" ) Home
       +nav_item("/recipe/create", "inactive") Add New
-      +nav_item("/recipe/planner", "active") Meal Planner
+      +nav_item("/planner", "active") Meal Planner
+      form(class="navbar-form navbar-left", role="search" method="post")
+        div(class="form-group")
+          input(name="searchinput" type="text" class="form-control", placeholder="Search")
+        button#search(type="submit", class="btn btn-default") Submit
   .container
     div(class="row" id="recipe_list")
       div(class="col-md-6")
         each recipe in recipes
           div(id="recipe_list_item")
             h2
-              a(href="/recipe/#{recipe.id}")= recipe.title
+              a(href="/recipe/#{recipe.id}")=recipe.title

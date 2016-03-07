@@ -10,7 +10,8 @@ var schema = mongoose.Schema({
     ingredients: { type: Array, "default": [] },
     prep_time: { type: Number, default: 15 }, //minutes
     instructions: String,
-    contains: { type: Array, "default": [] }
+    contains: { type: Array, "default": [] },
+    category: String
 })
 
 //Edit function
@@ -45,6 +46,7 @@ schema.statics.edit = function(req, callback) {
   update.prep_time = req.body.prep_time;
   update.instructions = req.body.instructions;
   update.contains = [ing_1_thing, ing_2_thing, ing_3_thing, ing_4_thing, ing_5_thing];
+  update.category = req.body.category;  //TODO
 
   this.update({_id: id}, update, function(err, numAffected) {
     if (err) return callback(err);

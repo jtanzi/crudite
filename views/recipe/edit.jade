@@ -6,6 +6,11 @@ block content
     +nav("Crudite", "dropdown_menu")
       +nav_item( "/", "inactive" ) Home
       +nav_item("/recipe/create", "inactive") Add New
+      +nav_item("/planner", "inactive") Meal Planner
+      form(class="navbar-form navbar-left", role="search" method="post")
+        div(class="form-group")
+          input(name="searchinput" type="text" class="form-control", placeholder="Search")
+        button#search(type="submit", class="btn btn-default") Submit
   //title = post ? recipe.title
   //author = post ? recipe.author
   //prep_time = post ? recipe.prep_time
@@ -28,12 +33,12 @@ block content
         div(class="col-md-12")
           fieldset
             legend Ingredients
-              mixin ing-li-item(name1, name2, name3)
+              mixin ing-li-item(name1, name2, name3, ingNumValue, ingUnitValue, ingThingValue)
                 div(class="row")
                   div(class="col-md-8")
-                    input#ing(class="inginput1" name=name1, type="number", placeholder=" # of ")
+                    input#ing(class="inginput1" name=name1, type="number", value=ingNumValue)
                     select(class="inginput2", name=name2)
-                      option(value="") -- Select Unit --
+                      option(value=ingUnitValue) -- Select Unit --
                       option cups
                       option tbsp
                       option tsp
@@ -42,17 +47,24 @@ block content
                       option kg
                       option inch(es)
                       option fl oz
-                    input#ing_1(class="inginput3" name=name3, type="text", placeholder=" Type ")
-              +ing-li-item("ing_1_num", "ing_1_units", "ing_1_thing")
-              +ing-li-item("ing_2_num", "ing_2_units", "ing_2_thing")
-              +ing-li-item("ing_3_num", "ing_3_units", "ing_3_thing")
-              +ing-li-item("ing_4_num", "ing_4_units", "ing_4_thing")
-              +ing-li-item("ing_5_num", "ing_5_units", "ing_5_thing")
+                    input#ing_1(class="inginput3" name=name3, type="text", value=ingThingValue)
+              each ingredient, index in recipe.ingredients
+                +ing-li-item("ing_#{index}_num", "ing_#{index}_units", "ing_#{index}_thing", ingredient.num, ingredient.unit, ingredient.thing)
       div(class="row")
         div(class="col-md-8")
           label(for="instructions") Instructions
           textarea#title(name='instructions')=recipe.instructions
       div(class="row")
         div(class="col-md-8")
+          label(for="category") Category
+          select(name="category")
+            option entree
+            option raw
+            option soups/stews
+            option slow cooker
+            option asian
+            option side
+      div(class="row")
+        div(class="col-md-8")
           button#update_submit(class="btn btn-xs btn-success", type='submit') Update
-          button#update_cancel(class="btn btn-xs btn-warning", action="/", type='button') Cancel
+          button#update_cancel(class="btn btn-xs btn-warning", action="/", type='submit') Cancel

@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  //a(href="/recipe/create") Add a New Recipe
-  //h1(id="main_title") Crudite
   .container
     +nav("Crudite", "dropdown_menu")
       +nav_item( "/", "active" ) Home
       +nav_item("/recipe/create", "inactive") Add New
+      +nav_item("/planner", "inactive") Meal Planner
+      form(class="navbar-form navbar-left", role="search" method="post")
+        div(class="form-group")
+          input(name="searchinput" type="text" class="form-control", placeholder="Search")
+        button#search(type="submit", class="btn btn-default") Submit
   .container
     div(class="row" id="recipe_list")
       div(class="col-md-6")
@@ -16,8 +19,7 @@ block content
               a(href="/recipe/#{recipe.id}")= recipe.title
             div(id="recipe_list_body")
               each ingredient in recipe.ingredients
-                p=ingredient
-
+                p=ingredient.num+" "+ingredient.unit+" "+ingredient.thing
               //Display first portion of instructions
               div(id="recipe_list_item_inst")
                 - var str = recipe.instructions.substr(0, 150);

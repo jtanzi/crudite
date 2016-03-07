@@ -16,6 +16,14 @@ module.exports = function (app) {
     })
   })
 
+  //Planner
+  app.get('/planner', function(req, res, next) {
+    Recipe.find({category: "soups/stews"}, {"title": "title"}).exec(function(err, recipes) {
+      if (err) return next(err);
+      res.render('planner.jade', { recipes: recipes } );
+    })
+  })
+
 
   // Recipe CRUD operations
   recipes(app);

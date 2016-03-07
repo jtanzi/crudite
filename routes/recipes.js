@@ -35,18 +35,21 @@ module.exports = function (app) {
     var ing_5_units = req.body.ing_5_units;
     var ing_5_thing = req.body.ing_5_thing;
     var instructions = req.body.instructions;
+    var category = req.body.category;
 
     Recipe.create({
       title: title,
       author: author,
       prep_time: prep_time,
-      ingredients : [ing_1_num + " " + ing_1_units + " " + ing_1_thing,
-        ing_2_num + " " + ing_2_units + " " + ing_2_thing,
-        ing_3_num + " " + ing_3_units + " " + ing_3_thing,
-        ing_4_num + " " + ing_4_units + " " + ing_4_thing,
-        ing_5_num + " " + ing_5_units + " " + ing_5_thing],
+      ingredients : [ {num: ing_1_num, unit: ing_1_units, thing: ing_1_thing} ,
+        {num: ing_2_num, unit: ing_2_units, thing: ing_2_thing},
+        {num: ing_3_num, unit: ing_3_units, thing: ing_3_thing},
+        {num: ing_4_num, unit: ing_4_units, thing: ing_4_thing},
+        {num: ing_5_num, unit: ing_5_units, thing: ing_5_thing},
+      ],
       contains: [ing_1_thing, ing_2_thing, ing_3_thing, ing_4_thing, ing_5_thing],
-      instructions: instructions
+      instructions: instructions,
+      category: category
      }, function (err, recipe) {
        if (err) return next(err);
        console.log("Created new recipe: " + title);
@@ -59,10 +62,11 @@ module.exports = function (app) {
   // Read
   app.get("/recipe/:id", function (req, res, next) {
     var id = req.params.id;
-    //console.log(id);
-    var ObjectID = require('mongodb').ObjectID; //Convert id as string to ObjectID for mongoDB query
+    console.log(id);
+    //var ObjectID = require('mongodb').ObjectID; //Convert id as string to ObjectID for mongoDB query
 
-    Recipe.findOne({_id: new ObjectID(id)}, function (err, recipe) {
+    //Recipe.findOne({_id: new ObjectID(id)}, function (err, recipe) {
+    Recipe.findById(id, function (err, recipe) {
       if (err) return next(err);
 
       if (!recipe) return next(); // 404
@@ -76,7 +80,8 @@ module.exports = function (app) {
   // Update
   app.get("/recipe/update/:id", function(req, res) {
     var id = req.params.id;
-    //console.log("Update record " + id);
+    var ingredients = Recipe.findById(id).ingredients;
+    console.log("ingredients" + ingredients);
     res.render('recipe/edit.jade', {
       recipe: Recipe.findById(id)
     });
@@ -103,6 +108,12 @@ module.exports = function (app) {
       }
     });
     res.redirect('/');
+  })
+
+//Search
+  app.post("/search", function(req, res) {
+    var searchterm = req.params.searchinput;
+    console.log(searchterm);
   })
 
 
