@@ -13,7 +13,10 @@ block content
   .container
     div(class="row" id="recipe_list")
       div(class="col-md-6")
-        each recipe in recipes
-          div(id="recipe_list_item")
-            h2
-              a(href="/recipe/#{recipe.id}")=recipe.title
+        each category in categories
+          div(class="category_list_item")
+            h2= category.category
+            each recipe in category.recipes
+              div(id="recipe_list_item")
+                h3
+                  a(href="/recipe/#{recipe.id}")=recipe.title

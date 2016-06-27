@@ -18,11 +18,25 @@ module.exports = function (app) {
 
   //Planner
   app.get('/planner', function(req, res, next) {
-    Recipe.find({category: "soups/stews"}, {"title": "title"}).exec(function(err, recipes) {
+    Recipe.find({}, {"title": "title", "category": "category"}).exec(function(err, recipes) {
       if (err) return next(err);
-      res.render('planner.jade', { recipes: recipes } );
-    })
-  })
+      // console.log(recipes);
+      var categories = ["entree", "salads", "soups/stews", "slow cooker", "raw", "desserts", "snacks"];
+      plannerArray = [];
+      var a = categories.length;
+      var i = 0;
+      for(i = 0; i < a; i+=1 ) {
+        arrayItem = {
+          category: categories[i],
+          recipes: []
+          };
+        arrayItem.recipes = recipes.filter( function(recipe) { return recipe.category == categories[i]; });
+        plannerArray.push(arrayItem);
+        };
+        console.log(plannerArray);
+      res.render('planner.jade', { categories: plannerArray } );
+    });
+});
 
 
   // Recipe CRUD operations
