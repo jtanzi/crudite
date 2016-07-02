@@ -17,6 +17,6 @@ block content
           div(class="category_list_item")
             h2= category.category
             each recipe in category.recipes
-              div(id="recipe_list_item")
+              div(id="recipe_list_body")
                 h3
                   a(href="/recipe/#{recipe.id}")=recipe.title

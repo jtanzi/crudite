@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
   $("#recipe_list_body").hide();
 })
