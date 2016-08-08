@@ -22,11 +22,15 @@ mongoose.connect('mongodb://localhost/crudite', function (err) {
   }
 
   var app = express();
+  
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('public/js', express.static(path.join(__dirname + '/public/js')));
   app.use(bodyParser.json());  //support JSON format for body parsing in post data
   app.use(bodyParser.urlencoded({extended: true}));
+
+
   //middleware(app);
   routes(app);
-  app.use(express.static(path.join(__dirname, 'public')));
 
 //Listen on port 3000 for browser requests
   app.listen(3000, function () {

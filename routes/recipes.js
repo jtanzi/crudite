@@ -75,6 +75,18 @@ module.exports = function (app) {
       res.render('recipe/view.jade', { recipe: recipe });
     })
   })
+  
+  // Planner 
+  app.get("/recipe/planner/:id", function (req, res, next) {
+    var id = req.params.id;
+    Recipe.findById(id, function (err, recipe) {
+      if(!recipe) {
+        res.send(err);
+        return next(err);
+      } 
+      res.send(recipe);
+    })
+  })
 
 
   // Update

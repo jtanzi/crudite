@@ -7,10 +7,11 @@ html
     style
       include ../public/style/style.css
       include ../public/style/bootstrap.min.css
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
-    script(src="../public/js/bootstrap.min.js")
-    script(src="../scripts/script.js")
+      include ../node_modules/dragula/dist/dragula.css
   body
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.0/dragula.min.js")
+    script(src="/js/script.js")
     header
       h1= pageTitle
     section.content

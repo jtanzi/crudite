@@ -14,9 +14,17 @@ block content
     div(class="row" id="recipe_list")
       div(class="col-md-6")
         each category in categories
-          div(class="category_list_item")
+          div(class="list-group category_list_item")
             h2= category.category
+              span(class="category-icon")
             each recipe in category.recipes
-              div(id="recipe_list_body")
-                h3
-                  a(href="/recipe/#{recipe.id}")=recipe.title
+              div(class="list-group-item recipe_list_body dragula-container")
+                h3(data-recipeId="#{recipe.id}")
+                  a(class="label label-info recipe_list_item" href="/recipe/#{recipe.id}")=recipe.title
+      div(class="col-md-6 well well-lg meal-planner dragula-container") 
+  .container
+  div(class="row" id="grocery-list-wrapper")
+    div.col-md-1
+    div(class="col-md-4")
+      ul.list-unstyled.grocery-list
+      
