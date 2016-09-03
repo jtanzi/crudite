@@ -15,6 +15,12 @@ module.exports = function (app) {
   })
 
   app.post("/recipe/create", function(req, res, next) {
+    var body = req.body;
+    for (var key in body) {
+      if (body.hasOwnProperty(key) && key.substring(0,4) == 'ing_') {
+        console.log(body[key]);
+      }
+    }
     var title = req.body.title;
     var author = req.body.author;
     var prep_time = req.body.prep_time;

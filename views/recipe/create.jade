@@ -16,7 +16,7 @@ block content
   //prep_time = post ? recipe.prep_time
   //instructions = post ? recipe.instructions
   .container
-    form(method="post", action=post ? "/recipe/create/"+recipe.id : "/recipe/create")
+    form(method="post", action=post ? "/recipe/create/" : "/recipe/create")
       div(class="row")
         div(class="col-md-8")
           label(for="title") Title
@@ -33,9 +33,10 @@ block content
         div(class="col-md-12")
           fieldset
             legend Ingredients
+              //- button#create-add-ing-input(class="btn btn-xs btn-success", type='submit') Add Row
               mixin ing-li-item(name1, name2, name3)
                 div(class="row")
-                  div(class="col-md-8")
+                  div(class="col-md-8" id="recipe-create-ing-input")
                     input#ing(class="inginput1" name=name1, type="number", placeholder=" # of ")
                     select(class="inginput2", name=name2)
                       option(value="") -- Select Unit --
@@ -53,6 +54,21 @@ block content
               +ing-li-item("ing_3_num", "ing_3_units", "ing_3_thing")
               +ing-li-item("ing_4_num", "ing_4_units", "ing_4_thing")
               +ing-li-item("ing_5_num", "ing_5_units", "ing_5_thing")
+              +ing-li-item("ing_6_num", "ing_6_units", "ing_6_thing")
+              +ing-li-item("ing_7_num", "ing_7_units", "ing_7_thing")
+              +ing-li-item("ing_8_num", "ing_8_units", "ing_8_thing")
+              +ing-li-item("ing_9_num", "ing_9_units", "ing_9_thing")
+              +ing-li-item("ing_10_num", "ing_10_units", "ing_10_thing")
+              +ing-li-item("ing_11_num", "ing_11_units", "ing_11_thing")
+              +ing-li-item("ing_12_num", "ing_12_units", "ing_12_thing")
+              +ing-li-item("ing_13_num", "ing_13_units", "ing_13_thing")
+              +ing-li-item("ing_14_num", "ing_14_units", "ing_14_thing")
+              +ing-li-item("ing_15_num", "ing_15_units", "ing_15_thing")
+              +ing-li-item("ing_16_num", "ing_16_units", "ing_16_thing")
+              +ing-li-item("ing_17_num", "ing_17_units", "ing_17_thing")
+              +ing-li-item("ing_18_num", "ing_18_units", "ing_18_thing")
+              +ing-li-item("ing_19_num", "ing_19_units", "ing_19_thing")
+              +ing-li-item("ing_20_num", "ing_20_units", "ing_20_thing")
       div(class="row")
         div(class="col-md-8")
           label(for="instructions") Instructions
