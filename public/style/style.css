@@ -19,3 +19,25 @@ h3 {
 .inginput3 {
   width: 200px;
 }
+
+.create-container .ingredients-input-group select {
+  line-height: 1.3em;
+  font-size: 1.3em;
+}
+
+.create-container .ingredients-input-group .ing-input-wrapper {
+  margin-top: 5px;
+}
+
+.create-container .category-input-group select {
+  line-height: 1.3em;
+  font-size: 1.3em;
+}
+
+#create-instructions {
+  height: 300px;
+}
+
+.create-button-group {
+  margin-top: 30px;
+}

@@ -4,6 +4,7 @@
 //Declarations
 var mongoose = require('mongoose');
 var Recipe = mongoose.model('Recipe');
+const INGREDIENT_COUNT = 20;
 
 module.exports = function (app) {
 
@@ -16,30 +17,55 @@ module.exports = function (app) {
 
   app.post("/recipe/create", function(req, res, next) {
     var body = req.body;
+    var num = 1;
+    ingArray = [];
+    containsArray = [];
     for (var key in body) {
+
+      // console.log(num);
       if (body.hasOwnProperty(key) && key.substring(0,4) == 'ing_') {
-        console.log(body[key]);
+        // console.log(!body[key]);
+        if(key == 'ing_' + num + '_num' && body[key]) {
+          var ingObject = {};
+          ingObject.num = body[key];
+        }
+        if(key == 'ing_' + num + '_units') {
+          if(body[key]) {
+            ingObject.unit = body[key];
+          }
+          else {
+            ingObject.unit = '';
+          }
+        }
+        if(key == 'ing_' + num + '_thing' && body[key]) {
+          ingObject.thing = body[key];
+          containsArray.push(body[key]);
+          num++;
+          ingArray.push(ingObject);
+        }
+        
       }
+      
     }
     var title = req.body.title;
     var author = req.body.author;
     var prep_time = req.body.prep_time;
     //TODO: Refactor code to use varying number of inputs for ingredients
-    var ing_1_num = req.body.ing_1_num;
-    var ing_1_units = req.body.ing_1_units;
-    var ing_1_thing = req.body.ing_1_thing;
-    var ing_2_num = req.body.ing_2_num;
-    var ing_2_units = req.body.ing_2_units;
-    var ing_2_thing = req.body.ing_2_thing;
-    var ing_3_num = req.body.ing_3_num;
-    var ing_3_units = req.body.ing_3_units;
-    var ing_3_thing = req.body.ing_3_thing;
-    var ing_4_num = req.body.ing_4_num;
-    var ing_4_units = req.body.ing_4_units;
-    var ing_4_thing = req.body.ing_4_thing;
-    var ing_5_num = req.body.ing_5_num;
-    var ing_5_units = req.body.ing_5_units;
-    var ing_5_thing = req.body.ing_5_thing;
+    // var ing_1_num = req.body.ing_1_num;
+    // var ing_1_units = req.body.ing_1_units;
+    // var ing_1_thing = req.body.ing_1_thing;
+    // var ing_2_num = req.body.ing_2_num;
+    // var ing_2_units = req.body.ing_2_units;
+    // var ing_2_thing = req.body.ing_2_thing;
+    // var ing_3_num = req.body.ing_3_num;
+    // var ing_3_units = req.body.ing_3_units;
+    // var ing_3_thing = req.body.ing_3_thing;
+    // var ing_4_num = req.body.ing_4_num;
+    // var ing_4_units = req.body.ing_4_units;
+    // var ing_4_thing = req.body.ing_4_thing;
+    // var ing_5_num = req.body.ing_5_num;
+    // var ing_5_units = req.body.ing_5_units;
+    // var ing_5_thing = req.body.ing_5_thing;
     var instructions = req.body.instructions;
     var category = req.body.category;
 
@@ -47,13 +73,8 @@ module.exports = function (app) {
       title: title,
       author: author,
       prep_time: prep_time,
-      ingredients : [ {num: ing_1_num, unit: ing_1_units, thing: ing_1_thing} ,
-        {num: ing_2_num, unit: ing_2_units, thing: ing_2_thing},
-        {num: ing_3_num, unit: ing_3_units, thing: ing_3_thing},
-        {num: ing_4_num, unit: ing_4_units, thing: ing_4_thing},
-        {num: ing_5_num, unit: ing_5_units, thing: ing_5_thing},
-      ],
-      contains: [ing_1_thing, ing_2_thing, ing_3_thing, ing_4_thing, ing_5_thing],
+      ingredients : ingArray,
+      contains: containsArray,
       instructions: instructions,
       category: category
      }, function (err, recipe) {

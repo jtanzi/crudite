@@ -15,75 +15,83 @@ block content
   //author = post ? recipe.author
   //prep_time = post ? recipe.prep_time
   //instructions = post ? recipe.instructions
-  .container
+  .container(class="create-container")
     form(method="post", action=post ? "/recipe/create/" : "/recipe/create")
       div(class="row")
-        div(class="col-md-8")
-          label(for="title") Title
-          input#title(name='title', placeholder=" Your Recipe Name", type="text")
+        h3
+          span(class="label label-primary col-xs-3") Title
+        span(class="col-xs-1")
+        input#title(class="col-xs-6" name='title', placeholder=" Your Recipe Name", type="text")
       div(class="row")
-        div(class="col-md-8")
-          label(for="author") Author
-          input#author(name='author', placeholder=" Author Name", type="text")
+        h3
+          span(class="label label-primary col-xs-3") Author
+        span(class="col-xs-1")
+        input#author(class="col-xs-6" name='author', placeholder=" Author Name", type="text")
       div(class="row")
-        div(class="col-md-8")
-          label(for="prep_time") Preparation Time
-          input#prep_time(name='prep_time', placeholder=" # minutes", type="number")
-      div(class="row")
-        div(class="col-md-12")
-          fieldset
-            legend Ingredients
-              //- button#create-add-ing-input(class="btn btn-xs btn-success", type='submit') Add Row
-              mixin ing-li-item(name1, name2, name3)
-                div(class="row")
-                  div(class="col-md-8" id="recipe-create-ing-input")
-                    input#ing(class="inginput1" name=name1, type="number", placeholder=" # of ")
-                    select(class="inginput2", name=name2)
-                      option(value="") -- Select Unit --
-                      option cups
-                      option tbsp
-                      option tsp
-                      option oz
-                      option lb(s)
-                      option kg
-                      option inch(es)
-                      option fl oz
-                    input#ing_1(class="inginput3" name=name3, type="text", placeholder=" Type ")
-              +ing-li-item("ing_1_num", "ing_1_units", "ing_1_thing")
-              +ing-li-item("ing_2_num", "ing_2_units", "ing_2_thing")
-              +ing-li-item("ing_3_num", "ing_3_units", "ing_3_thing")
-              +ing-li-item("ing_4_num", "ing_4_units", "ing_4_thing")
-              +ing-li-item("ing_5_num", "ing_5_units", "ing_5_thing")
-              +ing-li-item("ing_6_num", "ing_6_units", "ing_6_thing")
-              +ing-li-item("ing_7_num", "ing_7_units", "ing_7_thing")
-              +ing-li-item("ing_8_num", "ing_8_units", "ing_8_thing")
-              +ing-li-item("ing_9_num", "ing_9_units", "ing_9_thing")
-              +ing-li-item("ing_10_num", "ing_10_units", "ing_10_thing")
-              +ing-li-item("ing_11_num", "ing_11_units", "ing_11_thing")
-              +ing-li-item("ing_12_num", "ing_12_units", "ing_12_thing")
-              +ing-li-item("ing_13_num", "ing_13_units", "ing_13_thing")
-              +ing-li-item("ing_14_num", "ing_14_units", "ing_14_thing")
-              +ing-li-item("ing_15_num", "ing_15_units", "ing_15_thing")
-              +ing-li-item("ing_16_num", "ing_16_units", "ing_16_thing")
-              +ing-li-item("ing_17_num", "ing_17_units", "ing_17_thing")
-              +ing-li-item("ing_18_num", "ing_18_units", "ing_18_thing")
-              +ing-li-item("ing_19_num", "ing_19_units", "ing_19_thing")
-              +ing-li-item("ing_20_num", "ing_20_units", "ing_20_thing")
-      div(class="row")
-        div(class="col-md-8")
-          label(for="instructions") Instructions
-          textarea#title(name='instructions')
-      div(class="row")
-        div(class="col-md-8")
-          label(for="category") Category
-          select(name="category")
-            option entree
-            option raw
-            option soups/stews
-            option slow cooker
-            option asian
-            option side
-      div(class="row")
-        div(class="col-md-8")
-          button#create_submit(class="btn btn-xs btn-success", type='submit') Save
-          button#create_cancel(class="btn btn-xs btn-warning", action="/", type='button') Cancel
+        h3
+          span(class="label label-primary col-xs-3") Preparation Time
+        span(class="col-xs-1")
+        input#prep_time(class="col-xs-6" name='prep_time', placeholder=" # minutes", type="number")
+      div(class="row ingredients-input-group")
+        //- div(class="col-md-12 ingredients-input-group")
+        fieldset
+          h3
+            legend(class="label label-success col-xs-12") Ingredients
+          mixin ing-li-item(name1, name2, name3)
+            div(class="row ing-input-wrapper")
+              span(class="col-xs-1")
+              input#ing(class="inginput1 col-xs-1" name=name1, type="number", placeholder=" # of ")
+              span(class="col-xs-1")
+              select(class="inginput2 col-xs-3", name=name2)
+                option(value="") -- Select Unit --
+                option cups
+                option tbsp
+                option tsp
+                option oz
+                option lb(s)
+                option kg
+                option inch(es)
+                option fl oz
+              span(class="col-xs-1")
+              input#ing_1(class="inginput3 col-xs-4" name=name3, type="text", placeholder=" Type ")
+              span(class="col-xs-1")
+          +ing-li-item("ing_1_num", "ing_1_units", "ing_1_thing")
+          +ing-li-item("ing_2_num", "ing_2_units", "ing_2_thing")
+          +ing-li-item("ing_3_num", "ing_3_units", "ing_3_thing")
+          +ing-li-item("ing_4_num", "ing_4_units", "ing_4_thing")
+          +ing-li-item("ing_5_num", "ing_5_units", "ing_5_thing")
+          +ing-li-item("ing_6_num", "ing_6_units", "ing_6_thing")
+          +ing-li-item("ing_7_num", "ing_7_units", "ing_7_thing")
+          +ing-li-item("ing_8_num", "ing_8_units", "ing_8_thing")
+          +ing-li-item("ing_9_num", "ing_9_units", "ing_9_thing")
+          +ing-li-item("ing_10_num", "ing_10_units", "ing_10_thing")
+          +ing-li-item("ing_11_num", "ing_11_units", "ing_11_thing")
+          +ing-li-item("ing_12_num", "ing_12_units", "ing_12_thing")
+          +ing-li-item("ing_13_num", "ing_13_units", "ing_13_thing")
+          +ing-li-item("ing_14_num", "ing_14_units", "ing_14_thing")
+          +ing-li-item("ing_15_num", "ing_15_units", "ing_15_thing")
+          +ing-li-item("ing_16_num", "ing_16_units", "ing_16_thing")
+          +ing-li-item("ing_17_num", "ing_17_units", "ing_17_thing")
+          +ing-li-item("ing_18_num", "ing_18_units", "ing_18_thing")
+          +ing-li-item("ing_19_num", "ing_19_units", "ing_19_thing")
+          +ing-li-item("ing_20_num", "ing_20_units", "ing_20_thing")
+      div(class="row category-input-group")
+        h3
+          span(class="col-xs-3 label label-primary") Category
+        span(class="col-xs-1")
+        select(class="col-xs-4" name="category")
+          option entree
+          option raw
+          option soups/stews
+          option slow cooker
+          option asian
+          option side
+      div(class="row instructions-input-group")
+        h3
+          span(class="col-xs-3 label label-primary") Instructions
+        span(class="col-xs-1")
+        textarea#create-instructions(class="col-xs-6" name='instructions')
+      div(class="row create-button-group")
+        button#create_submit(class="btn btn-md btn-success col-xs-4", type='submit') Save
+        span(class="col-xs-4")
+        button#create_cancel(class="btn btn-md btn-warning col-xs-4", action="/", type='button') Cancel
