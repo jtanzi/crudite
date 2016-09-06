@@ -50,22 +50,6 @@ module.exports = function (app) {
     var title = req.body.title;
     var author = req.body.author;
     var prep_time = req.body.prep_time;
-    //TODO: Refactor code to use varying number of inputs for ingredients
-    // var ing_1_num = req.body.ing_1_num;
-    // var ing_1_units = req.body.ing_1_units;
-    // var ing_1_thing = req.body.ing_1_thing;
-    // var ing_2_num = req.body.ing_2_num;
-    // var ing_2_units = req.body.ing_2_units;
-    // var ing_2_thing = req.body.ing_2_thing;
-    // var ing_3_num = req.body.ing_3_num;
-    // var ing_3_units = req.body.ing_3_units;
-    // var ing_3_thing = req.body.ing_3_thing;
-    // var ing_4_num = req.body.ing_4_num;
-    // var ing_4_units = req.body.ing_4_units;
-    // var ing_4_thing = req.body.ing_4_thing;
-    // var ing_5_num = req.body.ing_5_num;
-    // var ing_5_units = req.body.ing_5_units;
-    // var ing_5_thing = req.body.ing_5_thing;
     var instructions = req.body.instructions;
     var category = req.body.category;
 
@@ -151,9 +135,28 @@ module.exports = function (app) {
 
 //Search
   app.post("/search", function(req, res) {
-    var searchterm = req.params.searchinput;
-    console.log(searchterm);
-  })
-
-
+    Recipe.find({
+      "$text": {
+        "$search": req.body.query
+        }
+      },
+      {
+       document: 1,
+       created: 1,
+       _id: 1,
+       textScore: {
+         $meta: "textScore"
+       }
+     },
+     {
+   sort: {
+     textScore: {
+       $meta: "textScore"
+      }
+    }
+    }).toArray(function(err, items) {
+      res.send(pagelist(items));
+    });
+  });
+  
 }
