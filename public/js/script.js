@@ -1,7 +1,9 @@
 var ingredientList = [];
-var ing_input_num = 5;
+const INGINPUTCOUNT = 20;
+
 
 $(document).ready(function() {
+
   $('.recipe_list_body').hide();
 
   $('.category_list_item').on('click', function() {
@@ -10,7 +12,22 @@ $(document).ready(function() {
     });
   });
   
-  ing_input_num = 5;
+  //Hide all but 5 ingredient input rows on create page
+  $('.ing-input-wrapper').slice(5).hide();
+  
+  // Show 5 more ingredient rows when clicking Add More button
+  var addIngRowNum = 5;
+  $('#add_ing_rows').click( function() {
+    console.log(addIngRowNum);
+    var num = addIngRowNum;
+    
+    $('.ing-input-wrapper').slice(num, num + 5)
+      .slideDown(300, function() {
+        
+    });
+    addIngRowNum += 5;
+    $("#add-more-wrapper").insertAfter("#ing10");
+  });
 })
 
 function addIngInputRow() {
