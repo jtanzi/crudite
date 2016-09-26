@@ -12,13 +12,27 @@ block content
           input(name="searchinput" type="text" class="form-control", placeholder="Search")
         button#search(type="submit", class="btn btn-default") Submit
   .container
-    h2=recipe.title
-    p="Created by " + recipe.author
-    p=recipe.prep_time + " minutes"
+    div(class="row")
+      span(class="col-md-12")
+        h2(class="recipe-title")=recipe.title
+    div(class="row")
+      span(class="col-md-6")
+        h3(class="recipe-author")="Created by " + recipe.author
+      span(class="col-md-6")
+        h3(class="recipe-prep-time")=recipe.prep_time + " minutes"
     each ingredient in recipe.ingredients
-      p=ingredient.num+" "+ingredient.unit+" "+ingredient.thing
-    p=recipe.instructions
-    form(method="post", action="/recipe/delete/" + recipe.id)
-      button#del(name="del_recipe") Delete
-    form(method="get", action="/recipe/update/" + recipe.id)
-      button#edit(name="upd_recipe") Edit
+      div(class="row")
+        span(class="col-md-12")
+          p(class="recipe-ingredient")=ingredient.num + " " + ingredient.unit + " " + ingredient.thing
+    div(class="row")
+      span(class="col-md-12")
+        p(class="recipe-instructions")=recipe.instructions
+    div(class="row")
+      span(class="col-md-2")
+      span(class="col-md-4")
+        form(method="get", action="/recipe/update/" + recipe.id)
+          button#edit(name="upd_recipe" class="btn btn-md btn-warning col-xs-4") Edit
+      span(class="col-md-2")
+      span(class="col-md-4")
+        form(method="post", action="/recipe/delete/" + recipe.id)
+          button#del(name="del_recipe" class="btn btn-md btn-danger col-xs-4") Delete
