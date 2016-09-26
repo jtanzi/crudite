@@ -16,7 +16,7 @@ module.exports = function (app) {
   })
 
   app.post("/recipe/create", function(req, res, next) {
-    var body = req.body;
+     var body = req.body;
     var num = 1;
     ingArray = [];
     containsArray = [];

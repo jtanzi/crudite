@@ -15,56 +15,79 @@ block content
   //author = post ? recipe.author
   //prep_time = post ? recipe.prep_time
   //instructions = post ? recipe.instructions
-  .container
+  .container(class="edit-container")
     form(action="/recipe/update/" + recipe.id, method="post", name='update_recipe',enctype='application/x-www-form-urlencoded')
       div(class="row")
-        div(class="col-md-8")
-          label(for="title") Title
-          input#title(name='title', placeholder=" Your Recipe Name", type="text", value=recipe.title)
+        h3
+          span(class="label label-primary col-xs-3") Title
+        span(class="col-xs-1")
+        input#title(name='title', placeholder=" Your Recipe Name", type="text", value=recipe.title)
       div(class="row")
-        div(class="col-md-8")
-          label(for="author") Author
-          input#author(name='author', placeholder=" Author Name", type="text", value=recipe.author)
+        h3
+          span(class="label label-primary col-xs-3") Author
+        span(class="col-xs-1")
+        input#author(name='author', placeholder=" Author Name", type="text", value=recipe.author)
       div(class="row")
-        div(class="col-md-8")
-          label(for="prep_time") Preparation Time
-          input#prep_time(name='prep_time', placeholder=" # minutes", type="number", value=recipe.prep_time)
-      div(class="row")
-        div(class="col-md-12")
-          fieldset
-            legend Ingredients
-              mixin ing-li-item(name1, name2, name3, ingNumValue, ingUnitValue, ingThingValue)
-                div(class="row")
-                  div(class="col-md-8")
-                    input#ing(class="inginput1" name=name1, type="number", value=ingNumValue)
-                    select(class="inginput2", name=name2)
-                      option(value=ingUnitValue) -- Select Unit --
-                      option cups
-                      option tbsp
-                      option tsp
-                      option oz
-                      option lb(s)
-                      option kg
-                      option inch(es)
-                      option fl oz
-                    input#ing_1(class="inginput3" name=name3, type="text", value=ingThingValue)
-              each ingredient, index in recipe.ingredients
-                +ing-li-item("ing_#{index}_num", "ing_#{index}_units", "ing_#{index}_thing", ingredient.num, ingredient.unit, ingredient.thing)
-      div(class="row")
-        div(class="col-md-8")
-          label(for="instructions") Instructions
-          textarea#title(name='instructions')=recipe.instructions
-      div(class="row")
-        div(class="col-md-8")
-          label(for="category") Category
-          select(name="category")
-            option entree
-            option raw
-            option soups/stews
-            option slow cooker
-            option asian
-            option side
-      div(class="row")
-        div(class="col-md-8")
-          button#update_submit(class="btn btn-xs btn-success", type='submit') Update
-          button#update_cancel(class="btn btn-xs btn-warning", action="/", type='submit') Cancel
+        h3
+          span(class="label label-primary col-xs-3") Preparation Time
+        span(class="col-xs-1")
+        input#prep_time(name='prep_time', placeholder=" # minutes", type="number", value=recipe.prep_time)
+      div(class="row ingredients-input-group")
+        fieldset(id="ing-input-sub-group")
+          h3
+            legend(class="label label-success col-xs-12") Ingredients
+          div(class="row ing-input-labels")
+            span(class="col-xs-1")
+            span(class="col-xs-1") Number
+            span(class="col-xs-1")
+            span(class="col-xs-3") Unit
+            span(class="col-xs-1")
+            span(class="col-xs-4") Ingredient
+            span(class="col-xs-1")
+          mixin ing-li-item(name1, name2, name3, ingNumValue, ingUnitValue, ingThingValue)
+            div(class="row ing-input-wrapper")
+              span(class="col-xs-1")
+              input#ing(class="inginput1 col-xs-1" name=name1, type="number", placeholder=" # of ", value=ingNumValue)
+              span(class="col-xs-1")
+              select(class="inginput2 col-xs-3", name=name2)
+                option(value=ingUnitValue)
+                option cups
+                option tbsp
+                option tsp
+                option oz
+                option lb(s)
+                option kg
+                option inch(es)
+                option fl oz
+              span(class="col-xs-1")
+              input#ing_1(class="inginput3 col-xs-4" name=name3, type="text", placeholder=" Type ", value=ingThingValue)
+              span(class="col-xs-1")
+          each ingredient, index in recipe.ingredients
+            +ing-li-item("ing_" + index + "_num", "ing_" + index + "_units", "ing_" + index + "_thing", ingredient.num, ingredient.unit, ingredient.thing)
+          
+          -for (var x = recipe.ingredients.length; x < 20; x++)
+            +ing-li-item("ing_" + x + "_num", "ing_" + x + "_units", "ing_" + x + "_thing")
+          div(class="row" id="add-more-wrapper")
+            span(class="col-xs-4")
+            button#add_ing_rows(class="btn btn-md btn-info col-xs-4", type='button') Add More
+            span(class="col-xs-4")
+      div(class="row category-input-group")
+        h3
+          span(class="col-xs-3 label label-primary") Category
+        span(class="col-xs-1")
+        select(class="col-xs-4" name="category", value=recipe.category)
+          option entree
+          option raw
+          option soups/stews
+          option slow cooker
+          option asian
+          option side
+      div(class="row instructions-input-group")
+        h3
+          span(class="col-xs-3 label label-primary") Instructions
+        span(class="col-xs-1")
+        textarea#create-instructions(class="col-xs-6" name='instructions', value=recipe.instructions)
+      div(class="row create-button-group")
+        button#update_submit(class="btn btn-md btn-success col-xs-4", type='submit') Update
+        span(class="col-xs-4")
+        button#update_cancel(class="btn btn-md btn-warning col-xs-4", action="/", type='submit') Cancel
