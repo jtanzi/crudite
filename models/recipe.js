@@ -29,20 +29,22 @@ schema.statics.edit = function(req, callback) {
    if (body.hasOwnProperty(key) && key.substring(0,4) == 'ing_') {
      // console.log(!body[key]);
      if(key == 'ing_' + num + '_num' && body[key]) {
+       console.log(key);
        var ingObject = {};
        ingObject.num = body[key];
      }
-     if(key == 'ing_' + num + '_units') {
+     if(key == 'ing_' + num + '_units' && body[key]) {
        console.log(key);
-       if(body[key]) {
+       //if(body[key]) {
          console.log(body[key]);
          ingObject.unit = body[key];
-       }
-       else {
-         ingObject.unit = '';
-       }
+       //}
+       //else {
+      //   ingObject.unit = '';
+       //}
      }
      if(key == 'ing_' + num + '_thing' && body[key]) {
+       console.log(key);
        ingObject.thing = body[key];
        containsArray.push(body[key]);
        num++;

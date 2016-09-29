@@ -17,7 +17,7 @@ module.exports = function (app) {
 
   app.post("/recipe/create", function(req, res, next) {
      var body = req.body;
-    var num = 1;
+    var num = 0;
     ingArray = [];
     containsArray = [];
     for (var key in body) {
@@ -29,13 +29,8 @@ module.exports = function (app) {
           var ingObject = {};
           ingObject.num = body[key];
         }
-        if(key == 'ing_' + num + '_units') {
-          if(body[key]) {
-            ingObject.unit = body[key];
-          }
-          else {
-            ingObject.unit = '';
-          }
+        if(key == 'ing_' + num + '_units' && body[key]) {
+          ingObject.unit = body[key];
         }
         if(key == 'ing_' + num + '_thing' && body[key]) {
           ingObject.thing = body[key];
