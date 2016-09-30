@@ -49,16 +49,10 @@ block content
               span(class="col-xs-1")
               input#ing(class="inginput1 col-xs-1" name=name1, type="number", placeholder=" # of ", value=ingNumValue)
               span(class="col-xs-1")
-              select(class="inginput2 col-xs-3", name=name2)
-                option(value=ingUnitValue)
-                option cups
-                option tbsp
-                option tsp
-                option oz
-                option lb(s)
-                option kg
-                option inch(es)
-                option fl oz
+              select(class="inginput2 col-xs-3", name=name2, value=ingUnitValue)
+                - var ingOpts = [null, 'cups', 'tbsp', 'tsp', 'oz', 'lb(s)', 'kg', 'inch(es)', 'fl oz']
+                for opt in ingOpts 
+                  option(selected=ingUnitValue == opt) #{opt}
               span(class="col-xs-1")
               input#ing_1(class="inginput3 col-xs-4" name=name3, type="text", placeholder=" Type ", value=ingThingValue)
               span(class="col-xs-1")
@@ -76,17 +70,14 @@ block content
           span(class="col-xs-3 label label-primary") Category
         span(class="col-xs-1")
         select(class="col-xs-4" name="category", value=recipe.category)
-          option entree
-          option raw
-          option soups/stews
-          option slow cooker
-          option asian
-          option side
+          - var catOps = [null, 'entree', 'raw', 'soups/stews', 'slow cooker', 'salads', 'asian', 'side']
+          for opt in catOps 
+            option(selected=recipe.category == opt) #{opt}
       div(class="row instructions-input-group")
         h3
           span(class="col-xs-3 label label-primary") Instructions
         span(class="col-xs-1")
-        textarea#create-instructions(class="col-xs-6" name='instructions', value=recipe.instructions)
+        textarea#create-instructions(class="col-xs-6" name='instructions')=recipe.instructions
       div(class="row create-button-group")
         button#update_submit(class="btn btn-md btn-success col-xs-4", type='submit') Update
         span(class="col-xs-4")

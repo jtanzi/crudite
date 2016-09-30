@@ -29,22 +29,13 @@ schema.statics.edit = function(req, callback) {
    if (body.hasOwnProperty(key) && key.substring(0,4) == 'ing_') {
      // console.log(!body[key]);
      if(key == 'ing_' + num + '_num' && body[key]) {
-       console.log(key);
        var ingObject = {};
        ingObject.num = body[key];
      }
      if(key == 'ing_' + num + '_units' && body[key]) {
-       console.log(key);
-       //if(body[key]) {
-         console.log(body[key]);
-         ingObject.unit = body[key];
-       //}
-       //else {
-      //   ingObject.unit = '';
-       //}
+       ingObject.unit = body[key];
      }
      if(key == 'ing_' + num + '_thing' && body[key]) {
-       console.log(key);
        ingObject.thing = body[key];
        containsArray.push(body[key]);
        num++;
@@ -54,10 +45,7 @@ schema.statics.edit = function(req, callback) {
   }
   var update = {};
   update.title = req.body.title;
-  console.log(update.title);
   update.author = req.body.author;
-  console.log(update.author);
-  console.log(ingArray);
   update.ingredients = ingArray; 
   update.prep_time = req.body.prep_time;
   update.instructions = req.body.instructions;
