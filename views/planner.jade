@@ -15,16 +15,19 @@ block content
       div(class="col-md-6")
         each category in categories
           div(class="list-group category_list_item")
-            h2= category.category
+            h2(class="planner-category-headers")= category.category
               span(class="category-icon")
             each recipe in category.recipes
               div(class="list-group-item recipe_list_body dragula-container")
                 h3(data-recipeId="#{recipe.id}")
                   a(class="label label-info recipe_list_item" href="/recipe/#{recipe.id}")=recipe.title
-      div(class="col-md-6 well well-lg meal-planner dragula-container") 
-  .container
-  div(class="row" id="grocery-list-wrapper")
-    div.col-md-1
-    div(class="col-md-4")
-      ul.list-unstyled.grocery-list
+      div(class="col-md-6 planner-meal-plan-wrapper")
+        h2 Meal Plan
+        div(class="well well-lg meal-planner dragula-container")
+  .container(class="grocery-list-container")
+    div(class="row" id="grocery-list-wrapper")
+      div(class="col-md-4")
+      div(class="col-md-4")
+        ul.list-unstyled.grocery-list
+      div(class="col-md-4")
       

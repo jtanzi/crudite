@@ -1,4 +1,6 @@
-
+body {
+  background-color: #FAEBD7  !important;
+}
 
 p {
   white-space: pre-line;
@@ -71,4 +73,17 @@ input {
 #add_ing_rows {
   margin: 5% auto;
   text-align: center;
+}
+
+/*Planner*/
+.grocery-list-container {
+  width: 85%;
+}
+
+.planner-category-headers {
+  color: #712029;
+}
+
+.planner-meal-plan-wrapper {
+  margin-top: 30px;
 }
