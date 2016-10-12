@@ -29,9 +29,15 @@ module.exports = function (app) {
           var ingObject = {};
           ingObject.num = body[key];
         }
+        
         if(key == 'ing_' + num + '_units' && body[key]) {
           ingObject.unit = body[key];
         }
+        
+        if(key == 'ing_' + num + '_units' && !body[key]) {
+          ingObject.unit = '';
+        }
+        
         if(key == 'ing_' + num + '_thing' && body[key]) {
           ingObject.thing = body[key];
           containsArray.push(body[key]);

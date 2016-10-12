@@ -47,7 +47,7 @@ block content
           mixin ing-li-item(name1, name2, name3, ingNumValue, ingUnitValue, ingThingValue)
             div(class="row ing-input-wrapper")
               span(class="col-xs-1")
-              input#ing(class="inginput1 col-xs-1" name=name1, type="number", placeholder=" # of ", value=ingNumValue)
+              input#ing(class="inginput1 col-xs-1" name=name1, placeholder=" # of ", value=ingNumValue)
               span(class="col-xs-1")
               select(class="inginput2 col-xs-3", name=name2, value=ingUnitValue)
                 - var ingOpts = [null, 'cups', 'tbsp', 'tsp', 'oz', 'lb(s)', 'kg', 'inch(es)', 'fl oz']

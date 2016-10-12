@@ -17,9 +17,7 @@ var schema = mongoose.Schema({
 //Edit function
 schema.statics.edit = function(req, callback) {
   var id = req.params.id;
-  console.log("recipe schema function call: " + id);
   var body = req.body;
-  console.log(body);
   var num = 0;
   ingArray = [];
   containsArray = [];
@@ -27,14 +25,19 @@ schema.statics.edit = function(req, callback) {
 
    // console.log(num);
    if (body.hasOwnProperty(key) && key.substring(0,4) == 'ing_') {
-     // console.log(!body[key]);
      if(key == 'ing_' + num + '_num' && body[key]) {
        var ingObject = {};
        ingObject.num = body[key];
      }
+     
      if(key == 'ing_' + num + '_units' && body[key]) {
        ingObject.unit = body[key];
      }
+     
+     if(key == 'ing_' + num + '_units' && !body[key]) {
+       ingObject.unit = '';
+     }
+     
      if(key == 'ing_' + num + '_thing' && body[key]) {
        ingObject.thing = body[key];
        containsArray.push(body[key]);
